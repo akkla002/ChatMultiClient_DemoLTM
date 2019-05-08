@@ -1,0 +1,8 @@
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_V2\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_V2\Server\obj\Debug\Server.fMain.resources
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_V2\Server\obj\Debug\Server.Properties.Resources.resources
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_V2\Server\obj\Debug\Server.csproj.GenerateResource.Cache
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_V2\Server\bin\Debug\Server.exe
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_V2\Server\bin\Debug\Server.pdb
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_V2\Server\obj\Debug\Server.exe
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_V2\Server\obj\Debug\Server.pdb
