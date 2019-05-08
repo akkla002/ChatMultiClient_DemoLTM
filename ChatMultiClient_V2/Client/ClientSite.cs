@@ -166,7 +166,8 @@ namespace Client
             }
             else if(obj is UserAccount)
             {
-                (this.ListFormShow[0] as fChat).AddOrRemoveUser(obj as UserAccount);
+		//Bug of add NewUser
+                //(this.ListFormShow[0] as fChat).AddOrRemoveUser(obj as UserAccount);
             }
         }
     }
