@@ -147,7 +147,8 @@ namespace Server
 
         public override string ToString()
         {
-            return toStr01();
+            return string.Format("{0} to {1}: {2}", Sender, Receiver, Content);
+            //return toStr01();
             //return base.ToString();
         }
         private string toStr01()

@@ -33,6 +33,8 @@
             this.btnSend = new System.Windows.Forms.Button();
             this.txbReceiver = new System.Windows.Forms.TextBox();
             this.pnUserOnline = new System.Windows.Forms.Panel();
+            this.lbUserOnline = new System.Windows.Forms.Label();
+            this.pnUserOnline.SuspendLayout();
             this.SuspendLayout();
             // 
             // rtxbAllContent
@@ -72,10 +74,20 @@
             // pnUserOnline
             // 
             this.pnUserOnline.AutoScroll = true;
+            this.pnUserOnline.Controls.Add(this.lbUserOnline);
             this.pnUserOnline.Location = new System.Drawing.Point(547, 13);
             this.pnUserOnline.Name = "pnUserOnline";
             this.pnUserOnline.Size = new System.Drawing.Size(147, 442);
             this.pnUserOnline.TabIndex = 4;
+            // 
+            // lbUserOnline
+            // 
+            this.lbUserOnline.AutoSize = true;
+            this.lbUserOnline.Location = new System.Drawing.Point(3, 3);
+            this.lbUserOnline.MaximumSize = new System.Drawing.Size(147, 442);
+            this.lbUserOnline.Name = "lbUserOnline";
+            this.lbUserOnline.Size = new System.Drawing.Size(0, 20);
+            this.lbUserOnline.TabIndex = 0;
             // 
             // fChat
             // 
@@ -92,6 +104,8 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "fChat";
             this.Text = "Chat";
+            this.pnUserOnline.ResumeLayout(false);
+            this.pnUserOnline.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -104,6 +118,7 @@
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.TextBox txbReceiver;
         private System.Windows.Forms.Panel pnUserOnline;
+        private System.Windows.Forms.Label lbUserOnline;
     }
 }
 

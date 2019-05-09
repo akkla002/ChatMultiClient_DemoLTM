@@ -42,7 +42,10 @@ namespace Server.ServerSite
         }
         private void AddOnline(ClientConnecting user)
         {
-            SendNotification(user);
+            //this method still bug
+            //SendNotification(user);
+
+
             listClients.Add(user);
             user.Disconnected = RemoveClientOnline;
             user.Pass = ProcessTranportObject;
@@ -77,14 +80,20 @@ namespace Server.ServerSite
         }
         private void SendNotification(ClientConnecting newClient)
         {
-            foreach (ClientConnecting item in listClients)
-            {
-                //Send UserOnline to the new client
-                newClient.SendUser(item.User);
+            new Thread(() => {
+                if (listClients.Count > 0)
+                    foreach (ClientConnecting item in listClients)
+                    {
+                        //Send UserOnline to the new client
+                        newClient.SendUser(item.User);
 
-                //Send new client to users online
-                item.SendUser(newClient.User);
-            }
+                        //Send new client to users online
+                        item.SendUser(newClient.User);
+
+
+                        Logger.Write(item.User.UserName);
+                    }
+            }).Start();
         }
         private void ProcessTranportObject(MyTransportObject obj)
         {

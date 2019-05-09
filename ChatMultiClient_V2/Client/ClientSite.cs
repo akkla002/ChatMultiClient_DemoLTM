@@ -55,12 +55,15 @@ namespace Client
             }
         }
 
-        private List<UserAccount> listUser;  
+        private List<UserAccount> listUser;
         IPEndPoint ipepServer = new IPEndPoint(IPAddress.Parse("127.0.0.1"), Server.MyConstant.PORT_SERVER);
         Socket clientSocket;
         DataTransmission dataTrans;
         UserAccount user;
         List<Form> listFormShow;
+
+        public delegate void AddOrRemoveOnlineUser(UserAccount user);
+        public AddOrRemoveOnlineUser AddOrRemove = null;
 
         Thread threadListen;
 
@@ -71,7 +74,7 @@ namespace Client
             User = new UserAccount();
             listUser = new List<UserAccount>();
             threadListen = new Thread(StartReceiveData);
-            
+
             ListFormShow = new List<Form>();
         }
         public bool Connect()
@@ -99,27 +102,6 @@ namespace Client
             threadListen.Start();
             return true;
         }
-        public void ChatToServer()
-        {
-            Thread t = new Thread(delegate ()
-            {
-                ChatContent content = new ChatContent();
-                MyTransportObject temp = new MyTransportObject(content);
-                while (true)
-                {
-                    try
-                    {
-                        content.Content = Console.ReadLine();
-                        dataTrans.SendData(temp);
-                    }
-                    catch (Exception)
-                    {
-                        return;
-                    }
-                }
-            });
-            t.Start(); 
-        }
         public void Finish()
         {
             threadListen.Abort();
@@ -128,6 +110,7 @@ namespace Client
         }
         public void StartReceiveData()
         {
+            Thread.Sleep(100);
             Server.MyTransportObject buffIn;
             while (true)
             {
@@ -145,7 +128,7 @@ namespace Client
                 }
                 ProcessObject(buffIn.Obj);
             }
-        } 
+        }
         public void SendChatContent(string data, string destination)
         {
             ChatContent chatContent = new ChatContent(User.UserName, destination, data);
@@ -154,20 +137,19 @@ namespace Client
         public void ProcessObject(Server.MyObject obj)
         {
             //if(obj is Server.Database.ChatContent)
-            if(obj is Server.ChatContent)
+            if (obj is Server.ChatContent)
             {
                 ChatContent temp = obj as ChatContent;
-                foreach (fChat item in ListFormShow)
-                {
-                    if ("" == temp.Receiver && temp.Sender == "")
-                        temp.Receiver = User.UserName;
-                    item.ShowChatContent(temp);
-                }
+                fChat item = ListFormShow[0] as fChat;
+                if ("" == temp.Receiver && temp.Sender == "")
+                    temp.Receiver = User.UserName;
+                item.ShowChatContent(temp);
             }
-            else if(obj is UserAccount)
+            else if (obj is UserAccount)
             {
-		//Bug of add NewUser
+                //this bug
                 //(this.ListFormShow[0] as fChat).AddOrRemoveUser(obj as UserAccount);
+                this.AddOrRemove(obj as UserAccount);
             }
         }
     }

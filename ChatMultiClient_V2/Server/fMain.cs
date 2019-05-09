@@ -31,9 +31,16 @@ namespace Server
         }
         private void AddContentToRtbx(ChatContent data)
         {
-            //string s = data.Sender + ": ";
-            //s += data.Content;
-            rtxbAllContent.Text += data + System.Environment.NewLine;
+            string s = "";
+            if(data.Sender == "")
+            {
+                s += "Server to all: " + data.Content;
+            }
+            else
+            {
+                s += data.Sender + " to Server" + data.Content;
+            }
+            rtxbAllContent.Text += s + System.Environment.NewLine;
         }
     }
 }

@@ -14,8 +14,10 @@ namespace Client
     public partial class fChat : Form
     {
         //private Server.UserAccount destination;
+
         public fChat()
         {
+            ClientSite.Instance.AddOrRemove = AddOrRemoveUser;
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
             //this.Destination = user;
@@ -31,13 +33,32 @@ namespace Client
 
         public void ShowChatContent(ChatContent data)
         {
-            
-            rtxbAllContent.Text += data.ToString() + System.Environment.NewLine;
+            string s = "";
+            if(data.Sender == "" && data.Receiver == "")
+            {
+                s += "Server to " + ClientSite.Instance.User.UserName + ": " + data.Content;
+            }
+            else
+            {
+                if (data.Sender == "")
+                    s += "Server to " + data.Receiver + ": " + data.Content;
+                else if (data.Receiver == "")
+                    s += data.Sender + " to Server: " + data.Content;
+                else s = data.ToString();
+            }
+            rtxbAllContent.Text += s + System.Environment.NewLine;
         }
-        public void AddOrRemoveUser(UserAccount user)
+        private void AddOrRemoveUser(UserAccount user)
         {
+
+            //lbUserOnline.Text += user.UserName + System.Environment.NewLine;
+            Logger.Write(user.UserName);
+            return;
+
+
             foreach (UserAccount item in listUserOnline)
             {
+                Logger.Write(item.UserName);
                 if (item.UserName == user.UserName)
                 {
                     listUserOnline.Remove(item);
@@ -53,21 +74,28 @@ namespace Client
                     return;
                 }
             }
-            Button btnUser = new Button();
-            btnUser.Location = new System.Drawing.Point(3, 3);
-            btnUser.Name = user.UserName;
-            btnUser.Size = new System.Drawing.Size(122, 32 * listUserOnline.Count);
-            btnUser.Text = user.UserName;
-            btnUser.Click += BtnUser_Click; this.Invoke((MethodInvoker)delegate
+            Logger.Write("Dang adding");
+            if (false)
             {
-                //perform on the UI thread
-                this.pnUserOnline.Controls.Add(btnUser);
-            });
-        }
-
-        private void BtnUser_Click(object sender, EventArgs e)
-        {
-            txbReceiver.Text = (sender as Button).Text;
+                Button btnUser = new Button();
+                btnUser.Location = new System.Drawing.Point(3, 3);
+                btnUser.Name = user.UserName;
+                btnUser.Size = new System.Drawing.Size(122, 32 * listUserOnline.Count);
+                btnUser.Text = user.UserName;
+                btnUser.Click += new EventHandler((object sender, EventArgs e) => {
+                    txbReceiver.Text = (sender as Button).Text;
+                });
+                this.Invoke((MethodInvoker)delegate
+                {
+                    //perform on the UI thread
+                    pnUserOnline.Controls.Add(btnUser);
+                    Logger.Write("Da add xong");
+                });
+            }
+            else
+            {
+            }
+            listUserOnline.Add(user);
         }
     }
 }
