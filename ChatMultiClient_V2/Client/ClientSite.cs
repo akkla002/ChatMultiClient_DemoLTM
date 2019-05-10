@@ -55,7 +55,20 @@ namespace Client
             }
         }
 
-        private List<UserAccount> listUser;
+        public List<UserAccount> ListUserOnline
+        {
+            get
+            {
+                return listUserOnline;
+            }
+
+            private set
+            {
+                listUserOnline = value;
+            }
+        }
+
+        private List<UserAccount> listUserOnline;
         IPEndPoint ipepServer = new IPEndPoint(IPAddress.Parse("127.0.0.1"), Server.MyConstant.PORT_SERVER);
         Socket clientSocket;
         DataTransmission dataTrans;
@@ -72,7 +85,8 @@ namespace Client
             clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             dataTrans = new DataTransmission(clientSocket);
             User = new UserAccount();
-            listUser = new List<UserAccount>();
+            ListUserOnline = new List<UserAccount>();
+            ListUserOnline.Add(new UserAccount() {NickName = "Server" });
             threadListen = new Thread(StartReceiveData);
 
             ListFormShow = new List<Form>();
@@ -149,8 +163,24 @@ namespace Client
             {
                 //this bug
                 //(this.ListFormShow[0] as fChat).AddOrRemoveUser(obj as UserAccount);
-                this.AddOrRemove(obj as UserAccount);
+                //this.AddOrRemove(obj as UserAccount);
+
+
+                RemoveOrAddUserOnline(obj as UserAccount);
             }
+        }
+        private void RemoveOrAddUserOnline(UserAccount inputUser)
+        {
+            foreach (UserAccount item in ListUserOnline)
+            {
+                if(item.UserName == inputUser.UserName)
+                {
+                    ListUserOnline.Remove(item);
+                    return;
+                }
+            }
+            ListUserOnline.Add(inputUser);
+            return;
         }
     }
 }

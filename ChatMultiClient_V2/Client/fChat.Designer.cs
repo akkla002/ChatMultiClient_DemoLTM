@@ -34,6 +34,7 @@
             this.txbReceiver = new System.Windows.Forms.TextBox();
             this.pnUserOnline = new System.Windows.Forms.Panel();
             this.lbUserOnline = new System.Windows.Forms.Label();
+            this.cbxUserOnline = new System.Windows.Forms.ComboBox();
             this.pnUserOnline.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,6 +75,7 @@
             // pnUserOnline
             // 
             this.pnUserOnline.AutoScroll = true;
+            this.pnUserOnline.Controls.Add(this.cbxUserOnline);
             this.pnUserOnline.Controls.Add(this.lbUserOnline);
             this.pnUserOnline.Location = new System.Drawing.Point(547, 13);
             this.pnUserOnline.Name = "pnUserOnline";
@@ -88,6 +90,14 @@
             this.lbUserOnline.Name = "lbUserOnline";
             this.lbUserOnline.Size = new System.Drawing.Size(0, 20);
             this.lbUserOnline.TabIndex = 0;
+            // 
+            // cbxUserOnline
+            // 
+            this.cbxUserOnline.FormattingEnabled = true;
+            this.cbxUserOnline.Location = new System.Drawing.Point(9, 3);
+            this.cbxUserOnline.Name = "cbxUserOnline";
+            this.cbxUserOnline.Size = new System.Drawing.Size(121, 28);
+            this.cbxUserOnline.TabIndex = 1;
             // 
             // fChat
             // 
@@ -119,6 +129,7 @@
         private System.Windows.Forms.TextBox txbReceiver;
         private System.Windows.Forms.Panel pnUserOnline;
         private System.Windows.Forms.Label lbUserOnline;
+        private System.Windows.Forms.ComboBox cbxUserOnline;
     }
 }
 

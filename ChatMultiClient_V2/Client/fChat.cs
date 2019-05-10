@@ -17,10 +17,9 @@ namespace Client
 
         public fChat()
         {
-            ClientSite.Instance.AddOrRemove = AddOrRemoveUser;
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
-            //this.Destination = user;
+            //SetDataBinding();
         }
         List<UserAccount> listUserOnline = new List<UserAccount>();
         private void btnSend_Click(object sender, EventArgs e)
@@ -48,54 +47,11 @@ namespace Client
             }
             rtxbAllContent.Text += s + System.Environment.NewLine;
         }
-        private void AddOrRemoveUser(UserAccount user)
+        public void SetDataBinding()
         {
-
-            //lbUserOnline.Text += user.UserName + System.Environment.NewLine;
-            Logger.Write(user.UserName);
-            return;
-
-
-            foreach (UserAccount item in listUserOnline)
-            {
-                Logger.Write(item.UserName);
-                if (item.UserName == user.UserName)
-                {
-                    listUserOnline.Remove(item);
-                    foreach (Control ct in pnUserOnline.Controls)
-                    {
-                        if(ct is Button)
-                        {
-                            Button tempBt = ct as Button;
-                            if (tempBt.Name == user.UserName)
-                                pnUserOnline.Controls.Remove(ct);
-                        }
-                    }
-                    return;
-                }
-            }
-            Logger.Write("Dang adding");
-            if (false)
-            {
-                Button btnUser = new Button();
-                btnUser.Location = new System.Drawing.Point(3, 3);
-                btnUser.Name = user.UserName;
-                btnUser.Size = new System.Drawing.Size(122, 32 * listUserOnline.Count);
-                btnUser.Text = user.UserName;
-                btnUser.Click += new EventHandler((object sender, EventArgs e) => {
-                    txbReceiver.Text = (sender as Button).Text;
-                });
-                this.Invoke((MethodInvoker)delegate
-                {
-                    //perform on the UI thread
-                    pnUserOnline.Controls.Add(btnUser);
-                    Logger.Write("Da add xong");
-                });
-            }
-            else
-            {
-            }
-            listUserOnline.Add(user);
+            Binding dataBindingCbx = new Binding("DataSource", ClientSite.Instance, "ListUserOnline",true,DataSourceUpdateMode.OnPropertyChanged);
+            cbxUserOnline.DataBindings.Add(dataBindingCbx);
+            cbxUserOnline.DisplayMember = "NickName";
         }
     }
 }

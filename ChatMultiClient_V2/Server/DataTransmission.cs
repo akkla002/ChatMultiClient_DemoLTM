@@ -24,6 +24,8 @@ namespace Server
             {
                 destination.Receive(size, 0, 4, SocketFlags.None);
                 byteReceive = BitConverter.ToInt32(size, 0);
+                if (byteReceive > 1024)
+                    throw new Exception("Loi");
                 data = new byte[byteReceive+1];
                 destination.Receive(data, 0, byteReceive+1, SocketFlags.None);
             }
@@ -46,7 +48,8 @@ namespace Server
             byte[] packetSize = new byte[4];
             int pkSize = data.Obj.ByteArrLength + 4;
             packetSize = BitConverter.GetBytes(pkSize);
-            
+            if (pkSize > 1024)
+                throw new Exception("Loi!");
             //Logger.ShowByteArr(data.ToByte(),pkSize);
             //Logger.ShowByteArr(data.Obj.ByteArr, data.Obj.LengthOfByteArr);
             try
