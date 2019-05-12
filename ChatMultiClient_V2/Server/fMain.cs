@@ -38,7 +38,7 @@ namespace Server
             }
             else
             {
-                s += data.Sender + " to Server" + data.Content;
+                s += data.Sender + " to Server: " + data.Content;
             }
             rtxbAllContent.Text += s + System.Environment.NewLine;
         }
