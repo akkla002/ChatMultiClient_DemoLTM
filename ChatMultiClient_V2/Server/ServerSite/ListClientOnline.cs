@@ -58,7 +58,8 @@ namespace Server.ServerSite
             //TheServer.Instance.ChangeStatus(client.User.UserName);
             if (this.listClients.Remove(client))
                 Console.WriteLine("Co client tat!");
-
+            if (!this.listClients.Remove(client))
+                Logger.Write("Da remove client " + client.User.UserName);
             new Thread(() => {
                 foreach (ClientConnecting item in listClients)
                 {
@@ -102,6 +103,7 @@ namespace Server.ServerSite
                         Thread.Sleep(500);
                         //Logger.Write(item.User.UserName);
                     }
+                SendHistoryChatContent(newClient);
             }).Start();
         }
         private void ProcessTranportObject(MyTransportObject obj)
@@ -109,6 +111,10 @@ namespace Server.ServerSite
             if (obj.Obj is ChatContent)
                 SendMyObject(obj.Obj as ChatContent);
             Logger.Write(obj.Obj.ToString());
+        }
+        internal void SendHistoryChatContent(ClientConnecting client)
+        {
+            client.SendListChatContent(client.User.GetHistoryChatContent());
         }
         #endregion
     }

@@ -34,7 +34,7 @@
             this.txbReceiver = new System.Windows.Forms.TextBox();
             this.pnUserOnline = new System.Windows.Forms.Panel();
             this.lbUserOnline = new System.Windows.Forms.Label();
-            this.cbxUserOnline = new System.Windows.Forms.ComboBox();
+            this.lsbUserOnline = new System.Windows.Forms.ListBox();
             this.pnUserOnline.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,7 +75,7 @@
             // pnUserOnline
             // 
             this.pnUserOnline.AutoScroll = true;
-            this.pnUserOnline.Controls.Add(this.cbxUserOnline);
+            this.pnUserOnline.Controls.Add(this.lsbUserOnline);
             this.pnUserOnline.Controls.Add(this.lbUserOnline);
             this.pnUserOnline.Location = new System.Drawing.Point(547, 13);
             this.pnUserOnline.Name = "pnUserOnline";
@@ -91,13 +91,15 @@
             this.lbUserOnline.Size = new System.Drawing.Size(0, 20);
             this.lbUserOnline.TabIndex = 0;
             // 
-            // cbxUserOnline
+            // lsbUserOnline
             // 
-            this.cbxUserOnline.FormattingEnabled = true;
-            this.cbxUserOnline.Location = new System.Drawing.Point(9, 3);
-            this.cbxUserOnline.Name = "cbxUserOnline";
-            this.cbxUserOnline.Size = new System.Drawing.Size(121, 28);
-            this.cbxUserOnline.TabIndex = 1;
+            this.lsbUserOnline.FormattingEnabled = true;
+            this.lsbUserOnline.ItemHeight = 20;
+            this.lsbUserOnline.Location = new System.Drawing.Point(9, 18);
+            this.lsbUserOnline.Name = "lsbUserOnline";
+            this.lsbUserOnline.Size = new System.Drawing.Size(135, 404);
+            this.lsbUserOnline.TabIndex = 2;
+            this.lsbUserOnline.SelectedIndexChanged += new System.EventHandler(this.lsbUserOnline_SelectedIndexChanged);
             // 
             // fChat
             // 
@@ -114,6 +116,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "fChat";
             this.Text = "Chat";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fChat_FormClosing);
             this.pnUserOnline.ResumeLayout(false);
             this.pnUserOnline.PerformLayout();
             this.ResumeLayout(false);
@@ -129,7 +132,7 @@
         private System.Windows.Forms.TextBox txbReceiver;
         private System.Windows.Forms.Panel pnUserOnline;
         private System.Windows.Forms.Label lbUserOnline;
-        private System.Windows.Forms.ComboBox cbxUserOnline;
+        private System.Windows.Forms.ListBox lsbUserOnline;
     }
 }
 

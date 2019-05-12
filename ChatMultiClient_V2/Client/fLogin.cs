@@ -46,7 +46,7 @@ namespace Client
                 this.Hide();
                 fChat f = new fChat();
                 ClientSite.Instance.ListFormShow.Add(f);
-                f.SetDataBinding();
+                f.AddOrRemoveOnlineUser(ClientSite.Instance.ListUserOnline[0]);
                 f.ShowDialog();
                 this.Show();
             }

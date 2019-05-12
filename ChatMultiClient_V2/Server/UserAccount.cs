@@ -137,5 +137,18 @@ namespace Server
             NickName = "temp";
             return false;
         }
+        internal List<ChatContent> GetHistoryChatContent()
+        {
+            List<ChatContent> historyChat = new List<ChatContent>();
+
+            string query = "exec usp_getHistoryOfChatContent @userName";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { UserName });
+            foreach (DataRow item in data.Rows)
+            {
+                historyChat.Add(new ChatContent(item));
+            }
+
+            return historyChat;
+        }
     }
 }

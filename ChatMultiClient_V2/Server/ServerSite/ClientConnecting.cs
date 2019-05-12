@@ -85,5 +85,21 @@ namespace Server.ServerSite
         {
             clientDataTrans.SendData(new MyTransportObject(user));
         }
+
+        internal void SendListChatContent(List<ChatContent> list)
+        {
+            //new Thread(() => {
+            //    foreach (ChatContent item in list)
+            //    {
+            //        clientDataTrans.SendData(new MyTransportObject(item));
+            //        Thread.Sleep(10);
+            //    }
+            //});
+            foreach (ChatContent item in list)
+            {
+                clientDataTrans.SendData(new MyTransportObject(item));
+                Thread.Sleep(100);
+            }
+        }
     }
 }

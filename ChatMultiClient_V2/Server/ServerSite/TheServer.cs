@@ -96,6 +96,11 @@ namespace Server.ServerSite
                     {
                         ShowChat(temp);
                     }
+                    else
+                    {
+                        if (!temp.Save())
+                            throw new Exception("Save error");
+                    }
                     SendChatContent(temp);
                 }
             }

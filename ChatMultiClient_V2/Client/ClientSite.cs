@@ -119,6 +119,7 @@ namespace Client
         public void Finish()
         {
             threadListen.Abort();
+            clientSocket.Close();
             Server.Logger.Write("Da ngat ket noi!");
             Instance = null;
         }
@@ -171,6 +172,7 @@ namespace Client
         }
         private void RemoveOrAddUserOnline(UserAccount inputUser)
         {
+            (ListFormShow[0] as fChat).AddOrRemoveOnlineUser(inputUser);
             foreach (UserAccount item in ListUserOnline)
             {
                 if(item.UserName == inputUser.UserName)

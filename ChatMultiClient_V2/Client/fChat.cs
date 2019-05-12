@@ -19,6 +19,7 @@ namespace Client
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
+            lsbUserOnline.DisplayMember = "NickName";
             //SetDataBinding();
         }
         List<UserAccount> listUserOnline = new List<UserAccount>();
@@ -26,7 +27,7 @@ namespace Client
         {
             if (txbContent.Text == "")
                 return;
-            ClientSite.Instance.SendChatContent(txbContent.Text,txbReceiver.Text);
+            ClientSite.Instance.SendChatContent(txbContent.Text,txbReceiver.Name);
             txbContent.Clear();
         }
 
@@ -47,11 +48,33 @@ namespace Client
             }
             rtxbAllContent.Text += s + System.Environment.NewLine;
         }
-        public void SetDataBinding()
+        public void AddOrRemoveOnlineUser(UserAccount user)
         {
-            Binding dataBindingCbx = new Binding("DataSource", ClientSite.Instance, "ListUserOnline",true,DataSourceUpdateMode.OnPropertyChanged);
-            cbxUserOnline.DataBindings.Add(dataBindingCbx);
-            cbxUserOnline.DisplayMember = "NickName";
+            for (int i = 0; i < lsbUserOnline.Items.Count ; i++)
+            {
+                UserAccount tempAccount = lsbUserOnline.Items[i] as UserAccount;
+                if (tempAccount.UserName == user.UserName)
+                {
+                    lsbUserOnline.Items.RemoveAt(i);
+                    lsbUserOnline.Refresh();
+                    return;
+                }
+            }
+            lsbUserOnline.Items.Add(user);
+        }
+
+        private void lsbUserOnline_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lsbUserOnline.SelectedItem == null)
+                return;
+            txbReceiver.Text = (lsbUserOnline.SelectedItem as UserAccount).NickName;
+            txbReceiver.Name = (lsbUserOnline.SelectedItem as UserAccount).UserName;
+        }
+
+        private void fChat_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ClientSite.Instance.Finish();
+            ClientSite.Instance.ListFormShow.Remove(this);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace Server
 {
@@ -53,6 +54,13 @@ namespace Server
             if (place != size)
                 throw new Exception("The user not same size");
             ByteArrLength = size;
+        }
+
+        internal ChatContent(DataRow data)
+        {
+            Sender = data["sender"].ToString();
+            Receiver = data["receiver"].ToString();
+            Content = data["content"].ToString();
         }
         #endregion
 
@@ -166,7 +174,14 @@ namespace Server
             return s;
         }
 
-
+        internal bool Save()
+        {
+            string query = "exec usp_create_chatContent @sender , @receiver , @content";
+            int resuilt = DataProvider.Instance.ExecuteNonQuery(query, new object[] { Sender,Receiver,Content });
+            if (resuilt > 0)
+                return true;
+            else return false;
+        }
 
         #endregion
     }
