@@ -19,6 +19,9 @@ namespace Client
             Server.Logger.Write("Da vao duoc!");
         }
 
+
+
+        #region Methods
         public bool Login()
         {
             UserAccount user = new UserAccount();
@@ -36,6 +39,16 @@ namespace Client
             }
         }
 
+        private void ClearInput()
+        {
+            txbUserName.Clear();
+            txbPassWord.Clear();
+            txbUserName.Focus();
+        }
+        #endregion
+
+
+        #region event
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if(Login()==true)
@@ -44,6 +57,7 @@ namespace Client
                 Server.Logger.Write("Dang nhap thanh cong");
                 //Server.Logger.Write(ClientSite.Instance.User.UserName);
                 this.Hide();
+                this.ClearInput();
                 fChat f = new fChat();
                 ClientSite.Instance.ListFormShow.Add(f);
                 f.AddOrRemoveOnlineUser(ClientSite.Instance.ListUserOnline[0]);
@@ -57,5 +71,28 @@ namespace Client
             }
             ClientSite.Instance.Finish();
         }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            ClearInput();
+        }
+
+        private void fLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Bạn có muốn thoát?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                e.Cancel = false;
+                //ClientSite.Instance.Finish();
+                //System.Environment.Exit(0);
+            }
+            else
+                e.Cancel = true;
+        }
+        #endregion
     }
 }

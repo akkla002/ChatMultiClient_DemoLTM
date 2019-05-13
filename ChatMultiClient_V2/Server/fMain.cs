@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Server
@@ -17,6 +18,13 @@ namespace Server
             CheckForIllegalCrossThreadCalls = false;
             ServerSite.TheServer.Instance.ShowChat = AddContentToRtbx;
             InitializeComponent();
+            new Thread(()=> {
+                while (true)
+                {
+                    ChangeUserOnline(ServerSite.TheServer.Instance.ListClient.GetNumberOfClientOnline());
+                    Thread.Sleep(300);
+                }
+            }).Start();
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -41,6 +49,26 @@ namespace Server
                 s += data.Sender + " to Server: " + data.Content;
             }
             rtxbAllContent.Text += s + System.Environment.NewLine;
+        }
+        
+
+        private void fMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+        }
+
+        private void fMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Bạn có muốn thoát?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                ServerSite.TheServer.Instance.Stop();
+                System.Environment.Exit(0);
+            }
+            else
+                e.Cancel = true;
+        }
+        public void ChangeUserOnline(int countUserOnline = 0)
+        {
+            lbNumUserOnline.Text = "Total users online: " + countUserOnline;
         }
     }
 }

@@ -30,10 +30,10 @@
         {
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.rtxbAllContent = new System.Windows.Forms.RichTextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnSend = new System.Windows.Forms.Button();
             this.txbContent = new System.Windows.Forms.TextBox();
+            this.lbNumUserOnline = new System.Windows.Forms.Label();
             this.flowLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -52,17 +52,10 @@
             this.rtxbAllContent.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.rtxbAllContent.Location = new System.Drawing.Point(3, 3);
             this.rtxbAllContent.Name = "rtxbAllContent";
+            this.rtxbAllContent.ReadOnly = true;
             this.rtxbAllContent.Size = new System.Drawing.Size(457, 263);
             this.rtxbAllContent.TabIndex = 0;
-            this.rtxbAllContent.ReadOnly = true;
             this.rtxbAllContent.Text = "";
-            // 
-            // panel1
-            // 
-            this.panel1.Location = new System.Drawing.Point(491, 14);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(211, 370);
-            this.panel1.TabIndex = 2;
             // 
             // panel2
             // 
@@ -91,33 +84,45 @@
             this.txbContent.Size = new System.Drawing.Size(327, 55);
             this.txbContent.TabIndex = 0;
             // 
+            // lbNumUserOnline
+            // 
+            this.lbNumUserOnline.AutoSize = true;
+            this.lbNumUserOnline.Location = new System.Drawing.Point(491, 14);
+            this.lbNumUserOnline.Name = "lbNumUserOnline";
+            this.lbNumUserOnline.Size = new System.Drawing.Size(45, 20);
+            this.lbNumUserOnline.TabIndex = 4;
+            this.lbNumUserOnline.Text = "label1";
+            // 
             // fMain
             // 
             this.AcceptButton = this.btnSend;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(714, 396);
+            this.ClientSize = new System.Drawing.Size(646, 396);
+            this.Controls.Add(this.lbNumUserOnline);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "fMain";
             this.Text = "Server";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fMain_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.fMain_FormClosed);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RichTextBox rtxbAllContent;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.TextBox txbContent;
+        private System.Windows.Forms.Label lbNumUserOnline;
     }
 }
 

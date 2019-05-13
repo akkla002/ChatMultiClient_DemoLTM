@@ -21,7 +21,10 @@ namespace Server.ServerSite
             serverSocket = server;
         }
 
-
+        public int GetNumberOfClientOnline()
+        {
+            return listClients.Count;
+        }
         #region Methods
         public void Start()
         {
@@ -57,7 +60,7 @@ namespace Server.ServerSite
         {
             //TheServer.Instance.ChangeStatus(client.User.UserName);
             if (this.listClients.Remove(client))
-                Console.WriteLine("Co client tat!");
+                Logger.Write("Co client tat!");
             if (!this.listClients.Remove(client))
                 Logger.Write("Da remove client " + client.User.UserName);
             new Thread(() => {
@@ -69,6 +72,16 @@ namespace Server.ServerSite
             //SendAllUser(client, false);
             if (threadAccept.ThreadState == ThreadState.Suspended)
                 threadAccept.Resume();
+        }
+
+        internal bool IsOnline(UserAccount userAccount)
+        {
+            foreach(ClientConnecting item in listClients)
+            {
+                if (item.User.UserName == userAccount.UserName)
+                    return true;
+            }
+            return false;
         }
 
         internal void SendChatContent(ChatContent data)
@@ -115,6 +128,15 @@ namespace Server.ServerSite
         internal void SendHistoryChatContent(ClientConnecting client)
         {
             client.SendListChatContent(client.User.GetHistoryChatContent());
+        }
+
+        public void Stop()
+        {
+            threadAccept.Abort();
+            foreach(ClientConnecting client in listClients)
+            {
+                client.Close();
+            }
         }
         #endregion
     }

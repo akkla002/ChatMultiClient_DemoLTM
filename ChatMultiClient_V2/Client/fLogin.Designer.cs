@@ -81,6 +81,7 @@
             // 
             this.txbPassWord.Location = new System.Drawing.Point(133, 9);
             this.txbPassWord.Name = "txbPassWord";
+            this.txbPassWord.PasswordChar = '*';
             this.txbPassWord.Size = new System.Drawing.Size(273, 26);
             this.txbPassWord.TabIndex = 1;
             // 
@@ -111,6 +112,7 @@
             this.btnExit.TabIndex = 2;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnReset
             // 
@@ -120,12 +122,14 @@
             this.btnReset.TabIndex = 2;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // fLogin
             // 
             this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(460, 211);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnExit);
@@ -136,6 +140,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "fLogin";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fLogin_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

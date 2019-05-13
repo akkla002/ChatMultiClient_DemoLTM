@@ -39,19 +39,31 @@ namespace Server.ServerSite
             }
         }
 
+        internal ListClientOnline ListClient
+        {
+            get
+            {
+                return listClient;
+            }
+            private set
+            {
+                listClient = value;
+            }
+        }
+
         private TheServer()
         {
             serverEP = new IPEndPoint(IPAddress.Any, MyConstant.PORT_SERVER);
             sv = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             sv.Bind(serverEP);
-            listClient = new ListClientOnline(sv);
+            ListClient = new ListClientOnline(sv);
             stackInput = new Stack<ChatContent>();
-            listClient.SendMyObject = PushInStack;
+            ListClient.SendMyObject = PushInStack;
             readData = new Thread(new ThreadStart(ShowMessage));
         }
         public void Start()
         {
-            listClient.Start();
+            ListClient.Start();
             readData.Start();
         }
         private void PushInStack(ChatContent obj)
@@ -108,7 +120,11 @@ namespace Server.ServerSite
         public void SendChatContent(ChatContent data)
         {
 
-            listClient.SendChatContent(data);
+            ListClient.SendChatContent(data);
+        }
+        public void Stop()
+        {
+            ListClient.Stop();
         }
     }
 }

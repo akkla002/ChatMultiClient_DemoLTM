@@ -74,10 +74,14 @@ namespace Server.ServerSite
             UserAccount tempUser = dataReceive.Obj as UserAccount;
             if(tempUser.CheckExisted())
             {
-                this.User = tempUser;
-                SendUser(tempUser);
-                return true;
+                if(!TheServer.Instance.ListClient.IsOnline(tempUser))
+                {
+                    this.User = tempUser;
+                    SendUser(tempUser);
+                    return true;
+                }
             }
+            tempUser.Refresh();
             SendUser(tempUser);
             return false;
         }
@@ -100,6 +104,12 @@ namespace Server.ServerSite
                 clientDataTrans.SendData(new MyTransportObject(item));
                 Thread.Sleep(100);
             }
+        }
+
+        internal void Close()
+        {
+            this.clientDataTrans.Close();
+            //throw new NotImplementedException();
         }
     }
 }

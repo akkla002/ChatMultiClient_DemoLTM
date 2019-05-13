@@ -9,7 +9,7 @@ namespace Server
     {
         public static void Write(string str)
         {
-            Console.WriteLine(str);
+            //Console.WriteLine(str);
         }
         public static void ShowByteArr(byte[] arr)
         {

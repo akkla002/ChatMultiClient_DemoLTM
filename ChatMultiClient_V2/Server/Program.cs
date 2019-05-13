@@ -17,7 +17,6 @@ namespace Server
             Application.SetCompatibleTextRenderingDefault(false);
             ServerSite.TheServer.Instance.Start();
             Application.Run(new fMain());
-            
         }
     }
 }

@@ -62,5 +62,11 @@ namespace Server
                 Logger.Write("Loi gui du lieu!");
             }
         }
+
+        internal void Close()
+        {
+            this.destination.Close();
+            //throw new NotImplementedException();
+        }
     }
 }

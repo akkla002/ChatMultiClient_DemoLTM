@@ -12,6 +12,7 @@ namespace Server
         public const int HIGH_USER_BUTTON = 30;
         private static Color offLine_User = Color.Red;
         private static Color oNLINE_USER = Color.Green;
+        public const string SERVER_IP = "127.0.0.1";
 
         public static Color OffLine_User
         {

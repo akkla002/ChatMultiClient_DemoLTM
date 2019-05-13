@@ -69,7 +69,7 @@ namespace Client
         }
 
         private List<UserAccount> listUserOnline;
-        IPEndPoint ipepServer = new IPEndPoint(IPAddress.Parse("127.0.0.1"), Server.MyConstant.PORT_SERVER);
+        IPEndPoint ipepServer = new IPEndPoint(IPAddress.Parse(Server.MyConstant.SERVER_IP), Server.MyConstant.PORT_SERVER);
         Socket clientSocket;
         DataTransmission dataTrans;
         UserAccount user;

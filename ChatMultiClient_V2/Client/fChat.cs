@@ -22,15 +22,8 @@ namespace Client
             lsbUserOnline.DisplayMember = "NickName";
             //SetDataBinding();
         }
-        List<UserAccount> listUserOnline = new List<UserAccount>();
-        private void btnSend_Click(object sender, EventArgs e)
-        {
-            if (txbContent.Text == "")
-                return;
-            ClientSite.Instance.SendChatContent(txbContent.Text,txbReceiver.Name);
-            txbContent.Clear();
-        }
 
+        #region Methods
         public void ShowChatContent(ChatContent data)
         {
             string s = "";
@@ -63,6 +56,12 @@ namespace Client
             lsbUserOnline.Items.Add(user);
         }
 
+        #endregion
+
+
+
+        #region event
+
         private void lsbUserOnline_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lsbUserOnline.SelectedItem == null)
@@ -76,5 +75,13 @@ namespace Client
             ClientSite.Instance.Finish();
             ClientSite.Instance.ListFormShow.Remove(this);
         }
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            if (txbContent.Text == "")
+                return;
+            ClientSite.Instance.SendChatContent(txbContent.Text, txbReceiver.Name);
+            txbContent.Clear();
+        }
+        #endregion
     }
 }

@@ -132,10 +132,14 @@ namespace Server
                 Password = "";
                 return true;
             }
+            Refresh();
+            return false;
+        }
+        internal void Refresh()
+        {
             UserName = "";
             Password = "";
             NickName = "temp";
-            return false;
         }
         internal List<ChatContent> GetHistoryChatContent()
         {
