@@ -92,17 +92,10 @@ namespace Server.ServerSite
 
         internal void SendListChatContent(List<ChatContent> list)
         {
-            //new Thread(() => {
-            //    foreach (ChatContent item in list)
-            //    {
-            //        clientDataTrans.SendData(new MyTransportObject(item));
-            //        Thread.Sleep(10);
-            //    }
-            //});
             foreach (ChatContent item in list)
             {
                 clientDataTrans.SendData(new MyTransportObject(item));
-                Thread.Sleep(100);
+                //Thread.Sleep(300);
             }
         }
 

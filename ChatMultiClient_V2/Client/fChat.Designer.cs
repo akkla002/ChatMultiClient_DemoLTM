@@ -33,8 +33,9 @@
             this.btnSend = new System.Windows.Forms.Button();
             this.txbReceiver = new System.Windows.Forms.TextBox();
             this.pnUserOnline = new System.Windows.Forms.Panel();
-            this.lbUserOnline = new System.Windows.Forms.Label();
             this.lsbUserOnline = new System.Windows.Forms.ListBox();
+            this.lbUserOnline = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.pnUserOnline.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,15 +83,6 @@
             this.pnUserOnline.Size = new System.Drawing.Size(147, 442);
             this.pnUserOnline.TabIndex = 4;
             // 
-            // lbUserOnline
-            // 
-            this.lbUserOnline.AutoSize = true;
-            this.lbUserOnline.Location = new System.Drawing.Point(3, 3);
-            this.lbUserOnline.MaximumSize = new System.Drawing.Size(147, 442);
-            this.lbUserOnline.Name = "lbUserOnline";
-            this.lbUserOnline.Size = new System.Drawing.Size(0, 20);
-            this.lbUserOnline.TabIndex = 0;
-            // 
             // lsbUserOnline
             // 
             this.lsbUserOnline.FormattingEnabled = true;
@@ -101,12 +93,31 @@
             this.lsbUserOnline.TabIndex = 2;
             this.lsbUserOnline.SelectedIndexChanged += new System.EventHandler(this.lsbUserOnline_SelectedIndexChanged);
             // 
+            // lbUserOnline
+            // 
+            this.lbUserOnline.AutoSize = true;
+            this.lbUserOnline.Location = new System.Drawing.Point(3, 3);
+            this.lbUserOnline.MaximumSize = new System.Drawing.Size(147, 442);
+            this.lbUserOnline.Name = "lbUserOnline";
+            this.lbUserOnline.Size = new System.Drawing.Size(0, 20);
+            this.lbUserOnline.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(235, 432);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 20);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Người nhận:";
+            // 
             // fChat
             // 
             this.AcceptButton = this.btnSend;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(706, 467);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.pnUserOnline);
             this.Controls.Add(this.txbReceiver);
             this.Controls.Add(this.btnSend);
@@ -133,6 +144,7 @@
         private System.Windows.Forms.Panel pnUserOnline;
         private System.Windows.Forms.Label lbUserOnline;
         private System.Windows.Forms.ListBox lsbUserOnline;
+        private System.Windows.Forms.Label label1;
     }
 }
 

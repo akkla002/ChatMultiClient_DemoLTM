@@ -19,8 +19,6 @@ namespace Client
             Server.Logger.Write("Da vao duoc!");
         }
 
-
-
         #region Methods
         public bool Login()
         {

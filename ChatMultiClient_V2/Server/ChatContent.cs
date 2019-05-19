@@ -32,23 +32,25 @@ namespace Server
             place += 4;
             if (theSize > 0)
             {
-                Sender = Encoding.ASCII.GetString(ByteArr, place, theSize);
+                Sender = Encoding.UTF8.GetString(ByteArr, place, theSize);
                 place += theSize;
             }
-            else Sender = "";
+            else
+                Sender = "";
             theSize = BitConverter.ToInt32(ByteArr, place);
             place += 4;
             if (theSize > 0)
             {
-                Receiver = Encoding.ASCII.GetString(ByteArr, place, theSize);
+                Receiver = Encoding.UTF8.GetString(ByteArr, place, theSize);
                 place += theSize;
             }
-            else Receiver = "";
+            else
+                Receiver = "";
             theSize = BitConverter.ToInt32(ByteArr, place);
             place += 4;
             if (theSize > 0)
             {
-                Content = Encoding.ASCII.GetString(ByteArr, place, theSize);
+                Content = Encoding.UTF8.GetString(ByteArr, place, theSize);
                 place += theSize;
             }
             if (place != size)
@@ -132,21 +134,21 @@ namespace Server
             place += 4;
             if (Sender.Length > 0)
             {
-                Buffer.BlockCopy(Encoding.ASCII.GetBytes(Sender), 0, data, place, Sender.Length);
+                Buffer.BlockCopy(Encoding.UTF8.GetBytes(Sender), 0, data, place, Sender.Length);
                 place += Sender.Length;
             }
             Buffer.BlockCopy(BitConverter.GetBytes(Receiver.Length), 0, data, place, 4);
             place += 4;
             if (Receiver.Length > 0)
             {
-                Buffer.BlockCopy(Encoding.ASCII.GetBytes(Receiver), 0, data, place, Receiver.Length);
+                Buffer.BlockCopy(Encoding.UTF8.GetBytes(Receiver), 0, data, place, Receiver.Length);
                 place += Receiver.Length;
             }
             Buffer.BlockCopy(BitConverter.GetBytes(Content.Length), 0, data, place, 4);
             place += 4;
             if (Content.Length > 0)
             {
-                Buffer.BlockCopy(Encoding.ASCII.GetBytes(Content), 0, data, place, Content.Length);
+                Buffer.BlockCopy(Encoding.UTF8.GetBytes(Content), 0, data, place, Content.Length);
                 place += Content.Length;
             }
             ByteArrLength = place;

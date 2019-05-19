@@ -38,7 +38,7 @@ namespace Server.ServerSite
             while (true)
             {
                 Socket client = serverSocket.Accept();
-                Console.WriteLine("Co client ket noi!");
+                //Console.WriteLine("Co client ket noi!");
                 ClientConnecting tempClient = new ClientConnecting(client);
                 tempClient.Online = AddOnline;
             }
@@ -58,11 +58,18 @@ namespace Server.ServerSite
         }
         private void RemoveClientOnline(ClientConnecting client)
         {
-            //TheServer.Instance.ChangeStatus(client.User.UserName);
-            if (this.listClients.Remove(client))
-                Logger.Write("Co client tat!");
-            if (!this.listClients.Remove(client))
-                Logger.Write("Da remove client " + client.User.UserName);
+            theRemove:
+            try
+            {
+                if (this.listClients.Remove(client))
+                    Logger.Write("Co client tat!");
+                if (!this.listClients.Remove(client))
+                    Logger.Write("Da remove client " + client.User.UserName);
+            }
+            catch
+            {
+                goto theRemove;
+            }
             new Thread(() => {
                 foreach (ClientConnecting item in listClients)
                 {
@@ -90,7 +97,7 @@ namespace Server.ServerSite
             {
                 foreach (ClientConnecting item in listClients)
                 {
-                        //Check user
+                    //Check user
                     if (data.Receiver == "" || data.Sender == "" || data.Sender == item.User.UserName || data.Receiver == item.User.UserName)
                     {
                         item.SendChatContent(data);
@@ -107,14 +114,10 @@ namespace Server.ServerSite
                     {
                         if (item == newClient)
                             continue;
-                        //Send UserOnline to the new client
                         newClient.SendUser(item.User);
-
-                        //Send new client to users online
+                        
                         item.SendUser(newClient.User);
-
-                        Thread.Sleep(500);
-                        //Logger.Write(item.User.UserName);
+                        
                     }
                 SendHistoryChatContent(newClient);
             }).Start();

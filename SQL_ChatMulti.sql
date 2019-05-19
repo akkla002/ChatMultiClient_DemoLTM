@@ -40,6 +40,7 @@ exec usp_create_theUser 'a','1','a'
 exec usp_create_theUser 'b','1','b'
 exec usp_create_theUser 'c','1','c'
 exec usp_create_theUser 'd','1','d'
+exec usp_create_theUser '1123','1','number'
 
 
 

@@ -10,34 +10,7 @@ namespace Server
     {
         public const int PORT_SERVER = 62222;
         public const int HIGH_USER_BUTTON = 30;
-        private static Color offLine_User = Color.Red;
-        private static Color oNLINE_USER = Color.Green;
-        public const string SERVER_IP = "127.0.0.1";
-
-        public static Color OffLine_User
-        {
-            get
-            {
-                return offLine_User;
-            }
-
-            private set
-            {
-                offLine_User = value;
-            }
-        }
-
-        public static Color ONLINE_USER
-        {
-            get
-            {
-                return oNLINE_USER;
-            }
-
-            private set
-            {
-                oNLINE_USER = value;
-            }
-        }
+        public const string SERVER_IP = "192.168.0.111";//"127.0.0.1";
+        
     }
 }

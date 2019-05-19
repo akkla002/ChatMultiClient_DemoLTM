@@ -66,8 +66,8 @@ namespace Client
         {
             if (lsbUserOnline.SelectedItem == null)
                 return;
-            txbReceiver.Text = (lsbUserOnline.SelectedItem as UserAccount).NickName;
-            txbReceiver.Name = (lsbUserOnline.SelectedItem as UserAccount).UserName;
+            txbReceiver.Text = (lsbUserOnline.SelectedItem as UserAccount).UserName;
+            //txbReceiver.Name = (lsbUserOnline.SelectedItem as UserAccount).NickName;
         }
 
         private void fChat_FormClosing(object sender, FormClosingEventArgs e)
@@ -79,7 +79,7 @@ namespace Client
         {
             if (txbContent.Text == "")
                 return;
-            ClientSite.Instance.SendChatContent(txbContent.Text, txbReceiver.Name);
+            ClientSite.Instance.SendChatContent(txbContent.Text, txbReceiver.Text);
             txbContent.Clear();
         }
         #endregion

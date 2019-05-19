@@ -69,7 +69,14 @@ namespace Server
                 conn.Open();
                 SqlCommand command = GetCommand(query, parameters);
                 command.Connection = conn;
-                rowAccept = command.ExecuteNonQuery();
+                try
+                {
+                    rowAccept = command.ExecuteNonQuery();
+                }
+                catch
+                {
+                    return 0;
+                }
                 conn.Close();
             }
             GC.Collect();

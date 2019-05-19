@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace Server
 
@@ -17,19 +18,23 @@ namespace Server
         }
         public MyTransportObject ReceiveData()
         {
+            NetworkStream nw = new NetworkStream(destination);
+
             byte[] size = new byte[4];
             int byteReceive;
             byte[] data;
             try
             {
-                destination.Receive(size, 0, 4, SocketFlags.None);
+                byteReceive = nw.Read(size, 0, 4);
+                //destination.Receive(size, 0, 4, SocketFlags.None);
                 byteReceive = BitConverter.ToInt32(size, 0);
                 if (byteReceive > 1024)
                     throw new Exception("Loi");
-                data = new byte[byteReceive+1];
-                destination.Receive(data, 0, byteReceive+1, SocketFlags.None);
+                data = new byte[1024];
+                byteReceive = nw.Read(data, 0, byteReceive);
+                //destination.Receive(data, 0, byteReceive+1, SocketFlags.None);
             }
-            catch (SocketException e)
+            catch (Exception e)
             {
                 return null;
             }

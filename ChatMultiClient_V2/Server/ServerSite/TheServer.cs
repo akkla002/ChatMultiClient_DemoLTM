@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Net;
 using System.Net.Sockets;
+using System.Windows.Forms;
 
 namespace Server.ServerSite
 {
@@ -111,7 +112,10 @@ namespace Server.ServerSite
                     else
                     {
                         if (!temp.Save())
-                            throw new Exception("Save error");
+                        {
+                            //throw new Exception("Save error");
+                            MessageBox.Show("");
+                        }
                     }
                     SendChatContent(temp);
                 }

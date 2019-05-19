@@ -1,0 +1,11 @@
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_DemoLTM\ChatMultiClient_V2\Client\bin\Release\Client.exe
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_DemoLTM\ChatMultiClient_V2\Client\bin\Release\Client.pdb
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_DemoLTM\ChatMultiClient_V2\Client\bin\Release\Server.exe
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_DemoLTM\ChatMultiClient_V2\Client\bin\Release\Server.pdb
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_DemoLTM\ChatMultiClient_V2\Client\obj\Release\Client.csprojResolveAssemblyReference.cache
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_DemoLTM\ChatMultiClient_V2\Client\obj\Release\Client.fChat.resources
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_DemoLTM\ChatMultiClient_V2\Client\obj\Release\Client.fLogin.resources
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_DemoLTM\ChatMultiClient_V2\Client\obj\Release\Client.Properties.Resources.resources
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_DemoLTM\ChatMultiClient_V2\Client\obj\Release\Client.csproj.GenerateResource.Cache
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_DemoLTM\ChatMultiClient_V2\Client\obj\Release\Client.exe
+C:\Users\thu\Desktop\temp\LTM\ChatMultiClient_DemoLTM\ChatMultiClient_V2\Client\obj\Release\Client.pdb
